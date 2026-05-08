@@ -10,7 +10,7 @@ import {
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
-const form = document.querySelector('#search-form');
+const form = document.querySelector('.form'); // форма з класом form
 const loadMoreBtn = document.querySelector('.load-more');
 
 let query = '';
@@ -34,6 +34,8 @@ form.addEventListener('submit', async e => {
 });
 
 loadMoreBtn.addEventListener('click', async () => {
+  // ❗ ховаємо кнопку одразу, щоб її не можна було натиснути повторно під час завантаження
+  hideLoadMoreButton();
   page += 1;
   await fetchImages(true);
 });
@@ -44,12 +46,19 @@ async function fetchImages(isLoadMore = false) {
     const data = await getImagesByQuery(query, page);
 
     if (data.hits.length === 0) {
-      iziToast.warning({ message: 'No images found!' });
+      // якщо немає результатів на додаткових сторінках → це кінець колекції
+      if (isLoadMore) {
+        iziToast.info({
+          message: "We're sorry, but you've reached the end of search results.",
+        });
+        hideLoadMoreButton();
+      } else {
+        iziToast.warning({ message: 'No images found!' });
+      }
       return;
     }
 
     createGallery(data.hits);
-
     totalHits = data.totalHits;
 
     if (page * 15 >= totalHits) {
@@ -64,6 +73,7 @@ async function fetchImages(isLoadMore = false) {
     if (isLoadMore) smoothScroll();
   } catch (error) {
     iziToast.error({ message: 'Something went wrong!' });
+    console.error(error);
   } finally {
     hideLoader();
   }
