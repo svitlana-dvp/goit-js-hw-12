@@ -16,3 +16,108 @@
 @import url('./badges.css');
 @import url('./back-link.css');
 @import url('./footer.css');
+
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f7f7f7;
+  color: #333;
+}
+
+header {
+  background: #4a90e2;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0 0 10px;
+}
+
+#search-form {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+#search-form input {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  width: 250px;
+}
+
+#search-form button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  background: #fff;
+  color: #4a90e2;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#search-form button:hover {
+  background: #e6e6e6;
+}
+
+.gallery {
+  list-style: none;
+  padding: 20px;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.gallery-item {
+  background: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.gallery-item img {
+  width: 100%;
+  display: block;
+}
+
+.info {
+  padding: 10px;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.load-more {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background: #4a90e2;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.load-more:hover {
+  background: #357ab8;
+}
+
+.loader {
+  text-align: center;
+  margin: 10px auto;
+  font-size: 16px;
+  color: #4a90e2;
+}
+
+.hidden {
+  display: none;
+}
